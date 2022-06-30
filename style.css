@@ -23,3 +23,29 @@ footer {
     position: absolute;
     bottom: 0;
 }
+
+.container {
+    
+    display:grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+}
+
+.field {
+    height: 100px;
+    width:  100px;
+    background-color: lightgrey;
+}
+
+.field:hover {
+    background-color: grey;
+    cursor: pointer
+}
+
+.one {
+    background-color: blue;
+}
+
+.two {
+    background-color: red;
+}
