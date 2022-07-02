@@ -3,6 +3,9 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #0080de;
+    background-image: linear-gradient(90deg, #0080de 0%, #ff0004 100%);
+
     
 }
 
@@ -17,11 +20,15 @@ header {
     justify-content: center;
     align-items: center;
 }
-
+.outcometext {
+    font-size: larger;
+    font-weight: 600;
+}
 
 footer {
     position: absolute;
     bottom: 0;
+    color: antiquewhite;
 }
 
 .container {
@@ -32,8 +39,8 @@ footer {
 }
 
 .field {
-    height: 100px;
-    width:  100px;
+    height: 200px;
+    width:  200px;
     background-color: lightgrey;
 }
 
@@ -42,10 +49,13 @@ footer {
     cursor: pointer
 }
 
-.one {
+.Blue, .blue {
     background-color: blue;
+    color: white;
+    border-radius: 30%;
 }
 
-.two {
+.Red, .red {
     background-color: red;
+    border-radius: 30%;
 }

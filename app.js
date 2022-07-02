@@ -25,11 +25,11 @@ const GameBoard = (() => {
         [6,4,2],
     ]
 
-    const playerOne = Player("one", "X")
-    const playerTwo = Player("two", "O")
+    const playerOne = Player("Blue", "X")
+    const playerTwo = Player("Red", "O")
 
     let playerTurn = playerOne;
-
+    let turnCount = 0;
 
     let fields = document.querySelectorAll(".field")
     
@@ -38,6 +38,7 @@ const GameBoard = (() => {
             field.classList.add(playerTurn.name);
             markBoard(field);
             checkwin(playerTurn)
+            turnCount++;
             changePlayer();
             
         }, {once: true}) // adds event listener to each box for 1 click only
@@ -48,12 +49,15 @@ const GameBoard = (() => {
     }
 
     const checkwin = (playerTurn) => {
+        
         winCombos.forEach((item) => {
             if (board[item[0]] == playerTurn.symbol && board[item[1]] == playerTurn.symbol && board[item[2]] == playerTurn.symbol) {
-            console.log(`${playerTurn.name} is winner!`);
             displayController.endGame(playerTurn);
             }
         })
+        if (turnCount == 8) {
+            displayController.tieGame()
+        }
     }
 
 
@@ -66,19 +70,36 @@ const GameBoard = (() => {
             
         }
     }
-    
+    const resetGame = () =>  {
+        window.location.reload()
+    }
     
     return {
-        
+        resetGame
     };
 })();
 
 const displayController = (() => {
+
+    const restart = document.querySelector('.restart')
+
+    restart.addEventListener('click', function() {
+        GameBoard.resetGame()
+    })
+
+    const outcome = document.querySelector('.outcometext')
+
     const endGame = (playerTurn) => {
-        console.log(`${playerTurn.name}`)
+        outcome.innerText = `${playerTurn.name} is the WINNER!`
+        outcome.style.color = `${playerTurn.name}`
+    }
+    const tieGame = () => {
+        outcome.innerText = `It's A Tie!!`
+        outcome.style.color = 'white'
     }
 
     return {
-        endGame
+        endGame,
+        tieGame
     }
 })()
