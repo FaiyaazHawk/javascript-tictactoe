@@ -32,7 +32,7 @@ const GameBoard = (() => {
 
 
     let fields = document.querySelectorAll(".field")
-    // adds event listener to each box for 1 click only
+    
     fields.forEach(field => {
         field.addEventListener('click', function() {
             field.classList.add(playerTurn.name);
@@ -40,15 +40,20 @@ const GameBoard = (() => {
             checkwin(playerTurn)
             changePlayer();
             
-        }, {once: true})
+        }, {once: true}) // adds event listener to each box for 1 click only
     })
 
     const markBoard = (field) => {
         board[field.dataset.index] = playerTurn.symbol
     }
 
-    const checkwin = (player) => {
-        
+    const checkwin = (playerTurn) => {
+        winCombos.forEach((item) => {
+            if (board[item[0]] == playerTurn.symbol && board[item[1]] == playerTurn.symbol && board[item[2]] == playerTurn.symbol) {
+            console.log(`${playerTurn.name} is winner!`);
+            displayController.endGame(playerTurn);
+            }
+        })
     }
 
 
@@ -68,6 +73,12 @@ const GameBoard = (() => {
     };
 })();
 
-const displayController = () => {
-    
-}
+const displayController = (() => {
+    const endGame = (playerTurn) => {
+        console.log(`${playerTurn.name}`)
+    }
+
+    return {
+        endGame
+    }
+})()
