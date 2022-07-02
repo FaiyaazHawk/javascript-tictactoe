@@ -29,7 +29,7 @@ const GameBoard = (() => {
     const playerTwo = Player("Red", "O")
 
     let playerTurn = playerOne;
-    let turnCount = 0;
+    let turnCount = 0; // turns to track for ties
 
     let fields = document.querySelectorAll(".field")
     
@@ -50,7 +50,7 @@ const GameBoard = (() => {
 
     const checkwin = (playerTurn) => {
         
-        winCombos.forEach((item) => {
+        winCombos.forEach((item) => { // checks each combo to see if player symbol in each position
             if (board[item[0]] == playerTurn.symbol && board[item[1]] == playerTurn.symbol && board[item[2]] == playerTurn.symbol) {
             displayController.endGame(playerTurn);
             }
@@ -71,7 +71,7 @@ const GameBoard = (() => {
         }
     }
     const resetGame = () =>  {
-        window.location.reload()
+        window.location.reload() // easy way to refresh the game is to just reload the page
     }
     
     return {
